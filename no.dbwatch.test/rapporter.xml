@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages default_route="rapport">
+	<aspages>
+		<name>test_page</name>
+		<version>1</version>
+		<company>dbwatch.no</company>
+		<group>no.dbwatch.test</group>
+		<artifactid>rapporter</artifactid>
+	</aspages>
+
+	<parameter name="base" />
+
+
+
+	<page name="test_instance" url="instance/" encoding="html">
+		<part type="text"><![CDATA[
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>"+title+"</title>
+	</head>
+<body>
+]]></part>
+		<part type="query" engine="dbwql">
+			<query><![CDATA[ instance->i/id{}/$i ]]></query>
+			<format><![CDATA[
+<a href="{$0/data}/">{$0/data}</a> entity: {$1/data}<br>]]></format>
+		</part>
+		<part type="text"><![CDATA[
+</html>
+]]></part>
+	</page>
+
+
+	<page name="test_single_instance" url="instance/$id/" encoding="html">
+		<part type="text"><![CDATA[
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>"+title+"</title>
+	</head>
+<body>
+]]></part>
+		<part type="query" engine="dbwql" query="instance[in=$id]">
+			<format><![CDATA[
+{$0/data}<br>]]></format>
+		</part>
+		<part type="text"><![CDATA[
+</html>
+]]></part>
+	</page>
+
+
+</pages>

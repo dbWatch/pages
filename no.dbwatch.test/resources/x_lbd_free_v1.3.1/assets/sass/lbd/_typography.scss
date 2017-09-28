@@ -82,8 +82,18 @@ h1 .subtitle{
     color: $success-color !important;
 }
 .text-warning, .text-warning:hover{
-    color: $warning-color !important;
+    color: $colour-warning !important;
 }
+.text-ok, .text-warning:hover{
+    color: $colour-ok !important;
+}
+.text-alarm, .text-warning:hover{
+    color: $colour-alarm !important;
+}
+.text-lost-connection, .text-warning:hover{
+    color: $colour-lost-connection !important;
+}
+
 .text-danger, .text-danger:hover{
     color: $danger-color !important;
 }

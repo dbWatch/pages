@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages default_route="dashboard">
+    <aspages>
+        <name>dashboard</name>
+        <version>1</version>
+        <company>dbwatch.no</company>
+        <group>no.dbwatch.test</group>
+        <artifactid>test_page</artifactid>
+    </aspages>
+
+    <page name="dashboard" url="" encoding="html">
+        <part type="file" read_from="{$self_path}/resources/x_lbd_free_v1.3.1/dashboard.html" />
+    </page>
+
+    <page name="test_single_instance" url="data/status-{$status}.json">
+        <part type="text"><![CDATA[{
+]]></part>
+        <part type="query" engine="dbwql" query="instance[status=$status]" mode="count">
+            <format><![CDATA[
+  "labels": [{$0}],
+  "series": [{$0}]
+]]></format>
+        </part>
+        <part type="text"><![CDATA[
+}]]></part>
+    </page>
+
+    <page name="files" url="resources/*" target="{$self_path}/resources/x_lbd_free_v1.3.1/{$url_relative}" root_path="resources/">
+        <filter type="file" filter="*.xml" exclude="true" />
+        <part type="file" />
+    </page>
+
+    <page name="dirs" url="resources/*" target="{$self_path}/x_lbd_free_v1.3.1/{$url_relative}"  root_path="resources/" target_resolver="file">
+        <filter type="directory" />
+        <part type="text"><![CDATA[
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{$url_relative}</title>
+	</head>
+<body>
+]]></part>
+        <part type="query" engine="dbwql">
+            <query><![CDATA[ content->c/name{} ]]></query>
+            <format><![CDATA[
+<a href="{$0}">{$0}</a> <br>]]></format>
+        </part>
+        <part type="text"><![CDATA[
+</html>
+]]></part>
+    </page>
+
+
+</pages>

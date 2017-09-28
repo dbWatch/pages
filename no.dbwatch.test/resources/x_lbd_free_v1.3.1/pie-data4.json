@@ -1,0 +1,4 @@
+{
+  "labels": ["OK", "Warning","Alarm","Lost connection"],
+  "series": [0, 0, 0,1]
+}
